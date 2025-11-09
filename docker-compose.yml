@@ -1,0 +1,42 @@
+# docker-compose.yml
+
+services:
+  # Сервис для базы данных PostgreSQL
+  db:
+    image: postgres:14-alpine # Используем официальный образ PostgreSQL версии 14 (alpine - минимальная версия)
+    container_name: my_django_db # Уникальное имя для контейнера БД (необязательно, но полезно)
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/ # Volume для сохранения данных БД между перезапусками контейнеров
+    environment:
+      # Эти переменные должны соответствовать тем, что указаны в .env файле
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432" # Пробрасываем порт PostgreSQL наружу (для локальной отладки, если нужно)
+
+  # Сервис для нашего Django-приложения
+  web:
+    build: . # Указывает Docker Compose собрать образ из Dockerfile в текущей директории
+    container_name: my_django_web # Уникальное имя для контейнера веб-приложения
+    command: gunicorn data_project.wsgi:application --bind 0.0.0.0:8000 # Команда запуска, как в Dockerfile
+    volumes:
+      - ./static:/app/staticfiles # Volume для статических файлов (собираются в staticfiles)
+      # - ./media:/app/media # Если у вас есть папка media для загружаемых файлов, тоже создайте volume
+    ports:
+      - "8000:8000" # Пробрасываем порт Django-приложения наружу
+    environment:
+      # Передаем переменные окружения из .env файла в контейнер web
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DEBUG: ${DEBUG}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: db # Здесь DB_HOST = 'db' - это имя сервиса PostgreSQL выше
+      DB_PORT: ${DB_PORT}
+    depends_on:
+      - db # Указываем, что контейнер web должен запуститься ПОСЛЕ контейнера db
+
+# Объявление volumes
+volumes:
+  postgres_data: # Volume для постоянного хранения данных PostgreSQL
