@@ -1,0 +1,26 @@
+[
+    {
+        "model": "data_app.studentdata",
+        "pk": 1,
+        "fields": {
+            "first_name": "Евгений",
+            "last_name": "Середов",
+            "subject": "Биология",
+            "grade": "5.00",
+            "date_received": "2024-01-01",
+            "save_to": "db"
+        }
+    },
+    {
+        "model": "data_app.studentdata",
+        "pk": 2,
+        "fields": {
+            "first_name": "Анна",
+            "last_name": "Петрова",
+            "subject": "Математика",
+            "grade": "4.50",
+            "date_received": "2024-01-05",
+            "save_to": "db"
+        }
+    }
+]

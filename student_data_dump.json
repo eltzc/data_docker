@@ -1,0 +1,1 @@
+[{"model": "data_app.studentdata", "pk": 3, "fields": {"first_name": "Евгений", "last_name": "Гужва", "subject": "Право", "grade": "5.00", "date_received": "2000-04-04", "save_to": "db"}}]

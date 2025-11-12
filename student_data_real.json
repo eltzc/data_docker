@@ -1,0 +1,50 @@
+[
+    {
+        "model": "data_app.studentdata",
+        "pk": 1,
+        "fields": {
+            "first_name": "Евгений",
+            "last_name": "Гужва",
+            "subject": "Право",
+            "grade": "5.00",
+            "date_received": "2000-04-04",
+            "save_to": "db"
+        }
+    },
+    {
+        "model": "data_app.studentdata",
+        "pk": 2,
+        "fields": {
+            "first_name": "Мария",
+            "last_name": "Иванова",
+            "subject": "История",
+            "grade": "4.50",
+            "date_received": "2001-07-12",
+            "save_to": "db"
+        }
+    },
+    {
+        "model": "data_app.studentdata",
+        "pk": 3,
+        "fields": {
+            "first_name": "Алексей",
+            "last_name": "Петров",
+            "subject": "Физика",
+            "grade": "4.80",
+            "date_received": "2000-09-01",
+            "save_to": "db"
+        }
+    },
+    {
+        "model": "data_app.studentdata",
+        "pk": 4,
+        "fields": {
+            "first_name": "Елена",
+            "last_name": "Сидорова",
+            "subject": "Литература",
+            "grade": "3.90",
+            "date_received": "1999-05-20",
+            "save_to": "db"
+        }
+    }
+]
